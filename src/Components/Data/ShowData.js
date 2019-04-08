@@ -8,7 +8,7 @@ const db = firebase.firestore();
       timestampsInSnapshots: true
     });
 
-const users = db.collection("Users")
+const users = db.collection("Users");
 
 
 class ShowData extends React.Component{
@@ -31,9 +31,9 @@ class ShowData extends React.Component{
         users.doc(doc.ids[i].id).get().then(resposta => {
           this.setState({ 
             name : this.state.name.concat([resposta.id]),
-            age : this.state.age.concat([resposta.data().Idade]),
-            city : this.state.city.concat([resposta.data().Cidade]),
-            state : this.state.state.concat([resposta.data().Estado]),
+            age : this.state.age.concat([resposta.data().Age]),
+            city : this.state.city.concat([resposta.data().City]),
+            state : this.state.state.concat([resposta.data().State]),
             e_mail: this.state.e_mail.concat([resposta.data().Mail]),
             })
         })
@@ -103,12 +103,12 @@ class ShowData extends React.Component{
           let i = 0;
           while(data_size !== i){
             index = index.concat([rowsDeleted.data[i].index])
-            db.collection("Usuários").doc(data[index[i]].name).delete();
+            users.doc(data[index[i]].name).delete();
             i++;
           }
         }else{
           const index = rowsDeleted.data[0].index;
-          db.collection("Usuários").doc(data[index].name).delete();
+          users.doc(data[index].name).delete();
         }
       }
     };
